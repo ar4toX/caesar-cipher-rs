@@ -23,21 +23,33 @@ fn main() {
     let letters: Vec<char> = plaintext.chars().collect();
 
     //Create and display ciphertext
-    caesar_it(abc, letters, key);
+    caesar(abc, letters, key);
 }
 
-fn caesar_it(abc: [char; 26], plaintext: Vec<char>, key: usize){
+fn caesar(abc: [char; 26], plaintext: Vec<char>, key: usize){
+    let mut cipher_text_vec: Vec<char>=vec![];
+    let mut n: usize;
 
     for i in 0..plaintext.len() {
         for j in 0..abc.len(){
             if abc[j]==plaintext[i] {
-                print!("{}", abc[j+key]);
-                
+                n=j+key;
+                if n>25{
+                    n-=26;
+                }
+                cipher_text_vec.push(abc[n]);
+                break;
+            }
+            if plaintext[i]==' '{
+                cipher_text_vec.push(' ');
                 break;
             }
         }
     }
     println!();
+
+    //Convert vector to string
+    let cipher_text: String = cipher_text_vec.iter().collect();
     
-    //println!("The Ciphertext is: {}", cipherText); //Prepared for success
+    println!("The Ciphertext is: {}", cipher_text);
 }
