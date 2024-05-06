@@ -27,8 +27,6 @@ fn main() {
 }
 
 fn caesar_it(abc: [char; 26], plaintext: Vec<char>, key: usize){
-    let mut cipherText= String::new();
-    let mut x: i32;
 
     for i in 0..plaintext.len() {
         for j in 0..abc.len(){
