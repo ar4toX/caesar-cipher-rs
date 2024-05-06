@@ -18,8 +18,12 @@ fn main() {
     let key = key.trim().parse::<i32>()
         .expect("Invalid entry");
 
-    //Create encrypted message
+    //Create and display ciphertext
+    caesar_it(abc, plainText, key);
+}
 
-    //Display message
-    println!("{} and {} with {}", abc, plainText, key);
+fn caesar_it(abc: &str, plainText: String, key: i32){
+    let mut cipherText= String::from("hey guys");
+
+    println!("the ciphertext is: {}", cipherText);
 }
