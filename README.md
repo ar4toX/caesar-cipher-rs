@@ -1,4 +1,4 @@
-This Rust program cyphers plaintext to ROT-1 or Caesar Cypher.
+This Rust program cyphers plaintext to Caesar Cypher.
 
 TODO:
 -Add decrypt option
