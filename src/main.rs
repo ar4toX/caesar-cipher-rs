@@ -2,37 +2,56 @@ use std::io;
 
 fn main() {
     //Values and things to use
-    let abc=
-    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-     'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-     's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     let mut plaintext = String::new();
     let mut key= String::new();
+    let mut option= String::new();
+
+    //Thing
+    println!("Hello what are you in here for? ");
+    println!("1. Cypher");
+    println!("2. Decypher (Bruteforce)");
+    
+    io::stdin().read_line(&mut option)
+        .expect("Input failed :(");
+    let option = option.trim().parse::<i32>()
+        .expect("Invalid entry");
 
     //Gather data from user
     println!("Enter the message to cipher: ");
     io::stdin().read_line(&mut plaintext)
         .expect("Input failed :(");
-    println!("Enter the desired key: ");
-    io::stdin().read_line(&mut key)
-        .expect("Input failed :(");
-    let key = key.trim().parse::<usize>()
-        .expect("Invalid entry");
 
-    //Make vector list for input characters
-    let letters: Vec<char> = plaintext.chars().collect();
+    match option{
+        1=>{
+            println!("Enter the desired key: ");
+            io::stdin().read_line(&mut key)
+                .expect("Input failed :(");
+            let key = key.trim().parse::<usize>()
+                .expect("Invalid entry");
+                caesar(&plaintext, key);}
 
-    //Create and display ciphertext
-    caesar(abc, letters, key);
+        2=>{for i in 1..26 {
+            println!("ROT-{}: {}", i, (caesar(&plaintext,i)));
+        }}
+        _=>println!("Invalid Option"),
+    }
 }
 
-fn caesar(abc: [char; 26], plaintext: Vec<char>, key: usize){
+fn caesar(plaintext: &String, key: usize) -> String{
+    let abc=
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+     'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+     's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+     //Make vector list for input characters
+    let letters: Vec<char> = plaintext.chars().collect();
+    
     let mut cipher_text_vec: Vec<char>=vec![];
     let mut n: usize;
 
-    for i in 0..plaintext.len() {
+    for i in 0..letters.len() {
         for j in 0..abc.len(){
-            if abc[j]==plaintext[i] {
+            if abc[j]==letters[i] {
                 n=j+key;
                 if n>25{
                     n-=26;
@@ -40,7 +59,7 @@ fn caesar(abc: [char; 26], plaintext: Vec<char>, key: usize){
                 cipher_text_vec.push(abc[n]);
                 break;
             }
-            if plaintext[i]==' '{
+            if letters[i]==' '{
                 cipher_text_vec.push(' ');
                 break;
             }
@@ -50,6 +69,6 @@ fn caesar(abc: [char; 26], plaintext: Vec<char>, key: usize){
 
     //Convert vector to string
     let cipher_text: String = cipher_text_vec.iter().collect();
-    
-    println!("The Ciphertext is: {}", cipher_text);
+
+    return cipher_text;
 }
