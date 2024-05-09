@@ -16,22 +16,28 @@ fn main() {
     let option = option.trim().parse::<i32>()
         .expect("Invalid entry");
 
-    //Gather data from user
-    println!("Enter the message to cipher: ");
-    io::stdin().read_line(&mut plaintext)
-        .expect("Input failed :(");
+    
 
     match option{
         1=>{
+            //Gather data from user
+            println!("Enter the message to cipher: ");
+            io::stdin().read_line(&mut plaintext)
+                .expect("Input failed :(");
             println!("Enter the desired key: ");
             io::stdin().read_line(&mut key)
                 .expect("Input failed :(");
             let key = key.trim().parse::<usize>()
                 .expect("Invalid entry");
-                caesar(&plaintext, key);}
+                println!("Ciphertext is: {}", caesar(&plaintext, key));}
 
-        2=>{for i in 1..26 {
-            println!("ROT-{}: {}", i, (caesar(&plaintext,i)));
+        2=>{
+            //Gather data from user
+        println!("Enter the message to decipher: ");
+        io::stdin().read_line(&mut plaintext)
+        .expect("Input failed :(");
+        for i in 1..26 {
+            println!("ROT-{}: {}", 26-i, (caesar(&plaintext,i)));
         }}
         _=>println!("Invalid Option"),
     }
