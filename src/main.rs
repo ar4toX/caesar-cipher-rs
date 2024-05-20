@@ -68,6 +68,26 @@ fn caesar(plaintext: &String, key: usize) -> String{
                 cipher_text_vec.push(' ');
                 break;
             }
+            if letters[i]==','{
+                cipher_text_vec.push(',');
+                break;
+            }
+            if letters[i]=='.'{
+                cipher_text_vec.push('.');
+                break;
+            }
+            if letters[i]=='!'{
+                cipher_text_vec.push('!');
+                break;
+            }
+            if letters[i]==':'{
+                cipher_text_vec.push(':');
+                break;
+            }
+            if letters[i]==';'{
+                cipher_text_vec.push(';');
+                break;
+            }
         }
     }
     println!();
