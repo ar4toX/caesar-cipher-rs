@@ -15,7 +15,6 @@ fn main() {
         .expect("Input failed :(");
     let option = option.trim().parse::<i32>()
         .expect("Invalid entry");
-
     
 
     match option{
@@ -50,7 +49,7 @@ fn caesar(plaintext: &String, key: usize) -> String{
      's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
      //Make vector list for input characters
-    let letters: Vec<char> = plaintext.chars().collect();
+    let letters: Vec<char> = plaintext.to_lowercase().chars().collect();
     
     let mut cipher_text_vec: Vec<char>=vec![];
     let mut n: usize;
