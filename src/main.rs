@@ -7,7 +7,7 @@ fn main() {
     let mut option= String::new();
 
     //Thing
-    println!("Hello what are you in here for? ");
+    println!("Select an option.");
     println!("1. Cypher");
     println!("2. Decypher (Bruteforce)");
     
@@ -86,6 +86,10 @@ fn caesar(plaintext: &String, key: usize) -> String{
             }
             if letters[i]==';'{
                 cipher_text_vec.push(';');
+                break;
+            }
+            if letters[i]=='?'{
+                cipher_text_vec.push('?');
                 break;
             }
         }
